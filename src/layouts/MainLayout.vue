@@ -19,6 +19,15 @@
         */
   -->
       </q-toolbar>
+
+    <div class="q-px-lg q-pt-xl q-mb-mb">
+        <div class="text-h3">Todo</div>
+        <div class="text-subtitle1">{{todayDate}}</div>
+    </div>
+
+    <q-img src="~assets/taro-7714366_1920.jpg"
+      class="header-image absolute-top"/>
+
     </q-header>
 
     <q-drawer
@@ -48,8 +57,12 @@
 </template>
 
 <script>
+import {date} from 'quasar'
+
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+
+
 
 const linksList = [
   {
@@ -98,7 +111,12 @@ const linksList = [
 
 export default defineComponent({
   name: 'MainLayout',
-
+  computed: {
+      todayDate(){
+          let timeStamp = Date.now()
+          return date.formatDate(timeStamp, 'dddd D MMMM')
+      }
+  },
   components: {
     EssentialLink
   },
@@ -115,4 +133,16 @@ export default defineComponent({
     }
   }
 })
+
+
+
 </script>
+
+<style lang="scss">
+.header-image {
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+  filter:grayscale(100%)
+  }
+</style>
